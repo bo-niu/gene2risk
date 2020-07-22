@@ -1,0 +1,29 @@
+  .uploadFileForm input{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    /* opacity: 0; */
+  }
+  .uploadFileForm button{
+    margin: 0;
+    color: #fff;
+    background: #16a085;
+    border: none;
+    /* width: 508px;
+    height: 35px;
+    margin-top: -20px;
+    margin-left: -4px; */
+    border-radius: 4px;
+    border-bottom: 4px solid #117A60;
+    transition: all .2s ease;
+    outline: none;
+  }
+  .uploadFileForm button:hover{
+    background: #149174;
+      color: #0C5645;
+  }
+  .uploadFileForm button:active{
+    border:0;
+  }
