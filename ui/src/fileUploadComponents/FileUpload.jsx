@@ -1,9 +1,10 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import Message from './Message.jsx';
 import Progress from './Progress.jsx';
-import axios from 'axios';
 import '../css/fileUpload.css';
 
+/* eslint "no-unused-vars": "off" */
 const FileUpload = () => {
   const [file, setFile] = useState('');
   const [filename, setFilename] = useState('Choose File');
@@ -12,12 +13,12 @@ const FileUpload = () => {
   const [uploadPercentage, setUploadPercentage] = useState(0);
   const [uploadDisabled, setUploadDisabled] = useState(false);
 
-  const onChange = e => {
+  const onChange = (e) => {
     setFile(e.target.files[0]);
     setFilename(e.target.files[0].name);
   };
 
-  const onSubmit = async e => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('file', file);
@@ -27,17 +28,17 @@ const FileUpload = () => {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
-        onUploadProgress: progressEvent => {
+        onUploadProgress: (progressEvent) => {
           setUploadPercentage(
             parseInt(
               Math.round((progressEvent.loaded * 100) / progressEvent.total)
             )
           );
-          
+
           // Clear percentage
           // setTimeout(() => setUploadPercentage(0), 10000);
           setUploadDisabled(true);
-        }
+        },
       });
 
       const { fileName, filePath } = res.data;
@@ -63,18 +64,17 @@ const FileUpload = () => {
 
       <form onSubmit={onSubmit} className="uploadFileForm">
         <input
-          type='file'
+          type="file"
           onChange={onChange}
           required
         />
         <Progress percentage={uploadPercentage} />
         <input
-          type='submit'
-          value='Upload'
+          type="submit"
+          value="Upload"
           disabled={uploadDisabled}
         />
       </form>
-      
       {uploadedFile !== undefined && uploadedFile !== null ? (
         <h3>{uploadedFile.fileName + ' Uploaded Successfully.'}</h3>
       ) : ''}

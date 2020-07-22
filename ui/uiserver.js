@@ -3,6 +3,13 @@ const path = require('path');
 const express = require('express');
 const proxy = require('http-proxy-middleware');
 const fileUpload = require('express-fileupload');
+const fs = require('fs');
+
+const dir = './uploads';
+
+if (!fs.existsSync(dir)) {
+  fs.mkdirSync(dir);
+}
 
 const app = express();
 
@@ -44,16 +51,19 @@ app.post('/upload', (req, res) => {
     return res.status(400).json({ msg: 'No file uploaded' });
   }
 
-  const file = req.files.file;
+  // const file = req.files.file;
+  const { files: { file } } = req;
 
-  file.mv(`${__dirname}/uploads/${file.name}`, err => {
+  file.mv(`${__dirname}/uploads/${file.name}`, (err) => {
     if (err) {
       console.error(err);
       return res.status(500).send(err);
     }
 
     res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
+    return null;
   });
+  return null;
 });
 
 app.get('/env.js', (req, res) => {

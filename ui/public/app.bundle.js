@@ -2127,6 +2127,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 //   return df;
 // }
 
+/* eslint "react/no-unused-state": "off" */
+
 var ParseFileComponent = /*#__PURE__*/function (_React$Component) {
   _inherits(ParseFileComponent, _React$Component);
 
@@ -2233,7 +2235,7 @@ var ParseFileComponent = /*#__PURE__*/function (_React$Component) {
           }]
         }],
         layout: {
-          title: "Multiple Traces Violin Plot",
+          title: 'Multiple Traces Violin Plot',
           yaxis: {
             zeroline: false
           }
@@ -2497,10 +2499,10 @@ module.exports = content.locals || {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Message_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Message.jsx */ "./src/fileUploadComponents/Message.jsx");
-/* harmony import */ var _Progress_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Progress.jsx */ "./src/fileUploadComponents/Progress.jsx");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Message_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Message.jsx */ "./src/fileUploadComponents/Message.jsx");
+/* harmony import */ var _Progress_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Progress.jsx */ "./src/fileUploadComponents/Progress.jsx");
 /* harmony import */ var _css_fileUpload_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../css/fileUpload.css */ "./src/css/fileUpload.css");
 /* harmony import */ var _css_fileUpload_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_css_fileUpload_css__WEBPACK_IMPORTED_MODULE_4__);
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2524,6 +2526,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+/* eslint "no-unused-vars": "off" */
 
 var FileUpload = function FileUpload() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
@@ -2574,7 +2577,7 @@ var FileUpload = function FileUpload() {
               formData.append('file', file);
               _context.prev = 3;
               _context.next = 6;
-              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/upload', formData, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/upload', formData, {
                 headers: {
                   'Content-Type': 'multipart/form-data'
                 },
@@ -2623,7 +2626,7 @@ var FileUpload = function FileUpload() {
     };
   }();
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, message ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Message_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, message ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Message_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
     msg: message
   }) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     onSubmit: onSubmit,
@@ -2632,7 +2635,7 @@ var FileUpload = function FileUpload() {
     type: "file",
     onChange: onChange,
     required: true
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Progress_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Progress_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
     percentage: uploadPercentage
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "submit",

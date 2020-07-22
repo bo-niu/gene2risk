@@ -17,6 +17,7 @@ import FileUploadComponent from './FileUploadComponent.jsx';
 //   return df;
 // }
 
+/* eslint "react/no-unused-state": "off" */
 class ParseFileComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -62,48 +63,48 @@ class ParseFileComponent extends React.Component {
   render() {
     // const { fileName, fileLoaded, contents } = this.state;
     return (
-    <React.Fragment>
-      {/* <div>Choose local file</div>
-	    <input type="file" id="file-input" accept="text/plain" onChange={this.loadLocalTxt} />
-      <div>{fileLoaded ? fileName : 'File has not been selected.'}</div>
-      <div>{fileLoaded ? contents : ''}</div> */}
-      <div><FileUploadComponent /></div>
-      <div>
-        <Plot
-          data={[{
-            type: 'violin',
-            x: this.day,
-            y: this.totalBill,
-            points: 'none',
-            box: {
-              visible: true
-            },
-            line: {
-              color: 'green',
-            },
-            meanline: {
-              visible: true
-            },
-            transforms: [{
-              type: 'groupby',
-            groups: this.day,
-            styles: [
-              {target: 'Sun', value: {line: {color: 'blue'}}},
-              {target: 'Sat', value: {line: {color: 'orange'}}},
-              {target: 'Thur', value: {line: {color: 'green'}}},
-              {target: 'Fri', value: {line: {color: 'red'}}}
-            ]
-            }]
-          }]}
-          layout={{
-            title: "Multiple Traces Violin Plot",
-            yaxis: {
-              zeroline: false
-            }
-          }}
-        />
-      </div>
-    </React.Fragment>
+      <React.Fragment>
+        {/* <div>Choose local file</div>
+        <input type="file" id="file-input" accept="text/plain" onChange={this.loadLocalTxt} />
+        <div>{fileLoaded ? fileName : 'File has not been selected.'}</div>
+        <div>{fileLoaded ? contents : ''}</div> */}
+        <div><FileUploadComponent /></div>
+        <div>
+          <Plot
+            data={[{
+              type: 'violin',
+              x: this.day,
+              y: this.totalBill,
+              points: 'none',
+              box: {
+                visible: true,
+              },
+              line: {
+                color: 'green',
+              },
+              meanline: {
+                visible: true,
+              },
+              transforms: [{
+                type: 'groupby',
+                groups: this.day,
+                styles: [
+                  { target: 'Sun', value: { line: { color: 'blue' } } },
+                  { target: 'Sat', value: { line: { color: 'orange' } } },
+                  { target: 'Thur', value: { line: { color: 'green' } } },
+                  { target: 'Fri', value: { line: { color: 'red' } } },
+                ],
+              }],
+            }]}
+            layout={{
+              title: 'Multiple Traces Violin Plot',
+              yaxis: {
+                zeroline: false,
+              },
+            }}
+          />
+        </div>
+      </React.Fragment>
     );
   }
 }
