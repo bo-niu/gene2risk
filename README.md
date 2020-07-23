@@ -45,9 +45,9 @@ Currently in this framework, we have `ui` and `api` directory. `api` is another 
 |- ...
 ```
 
-In this project, currently we are creating a Single Page Application (SPA) and using **webpack** to bundle all source codes together into `public/app.bundle.js` and `public/vendor.bundle.js`, this two file was included in the `public/index.html` which forms our web app.
+In this project, currently we are creating a Single Page Application (SPA) and using **webpack** to bundle all source codes together into `public/app.bundle.js` and `public/vendor.bundle.js`. This two file was included in the `public/index.html` which forms our web app.
 
-The `src` directory contains all the source codes of `React` and others. Since this project structure was taken from another web app called *Issue Tracker*, all the jsx files started with Issue is for that app. I do not remove them to keep their structure because they can be our template. You can have a look at their structure by start looking at the `App.jsx` since this is the entry point of our code, then `Page.jsx` -> `NavBar.jsx` -> `Contents.jsx` -> `...`. After familiar with the structure, you can remove those Issue---.jsx files.
+The `src` directory contains all the source codes of `React` and others. Since this project structure was taken from another web app called *Issue Tracker*, all the jsx files started with Issue is for that app. I do not remove them in order to keep their structure because they can be our template. You can have a look at their structure by start looking at the `App.jsx` which is the entry point of our code, then `Page.jsx` -> `NavBar.jsx` -> `Contents.jsx` -> `...`. After familiar with the structure, you can remove those Issue---.jsx files.
 
 The `uiserver.js` is the server of our project. We are using `Express` as server. 
 
@@ -57,7 +57,7 @@ The `uploads` directory is used for receiving uploaded files.
 
 ## Development
 
-Open two command windows,
+While developing, please open two command windows,
 
 The first one:
 
