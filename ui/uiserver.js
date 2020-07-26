@@ -1,3 +1,4 @@
+const { PythonShell } = require('python-shell');
 require('dotenv').config();
 const path = require('path');
 const express = require('express');
@@ -60,7 +61,24 @@ app.post('/upload', (req, res) => {
       return res.status(500).send(err);
     }
 
-    res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
+    // const argsObj = {
+    //   filename: path.join(__dirname, 'uploads/tommy_23andme.txt').replace(/\\/g, '/'),
+    // };
+    const options = {
+      mode: 'text',
+      pythonPath: path.join(__dirname, '../gene2riskPythonEnv/Scripts/python.exe'),
+      pythonOptions: ['-u'], // get print results in real-time
+      scriptPath: path.join(__dirname, 'pythonScripts'),
+      args: [path.join(__dirname, 'uploads/tommy_23andme.txt').replace(/\\/g, '/')],
+    };
+
+    // console.log('args: ', path.join(__dirname, 'uploads/tommy_23andme.txt').replace(/\\/g, '/'));
+    PythonShell.run('load.py', options, (error, results) => {
+      if (error) console.log(error);
+      // results is an array consisting of messages collected during execution
+      console.log('results:\n', results);
+      res.send(results);
+    });
     return null;
   });
   return null;

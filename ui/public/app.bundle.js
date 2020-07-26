@@ -2049,28 +2049,7 @@ function Footer() {
 
 function Page() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NavBar, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Grid"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Contents_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Footer, null));
-} // function NavBar() {
-//   return (
-//     <nav>
-//       {/* <a href="/">Home</a> */}
-//       <NavLink exact to="/">Home</NavLink>
-//       {' | '}
-//       {/* <a href="/#/issues">Issue List</a> */}
-//       <NavLink to="/issues">Issue List</NavLink>
-//       {' | '}
-//       {/* <a href="/#/report">Report</a> */}
-//       <NavLink to="/report">Report</NavLink>
-//     </nav>
-//   );
-// }
-// export default function Page() {
-//   return (
-//     <div>
-//       <NavBar />
-//       <Contents />
-//     </div>
-//   );
-// }
+}
 
 /***/ }),
 
@@ -2152,36 +2131,6 @@ var ParseFileComponent = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(ParseFileComponent, [{
-    key: "readFile",
-    value: function readFile(file) {
-      return new Promise(function (resolve, reject) {
-        var reader = new FileReader();
-
-        reader.onload = function (res) {
-          resolve(res.target.result);
-        };
-
-        reader.onerror = function (err) {
-          return reject(err);
-        };
-
-        reader.readAsText(file);
-      });
-    } // async loadLocalTxt(e) {
-    //   console.log('enter loadLocalTxt');
-    //   const all_files = document.querySelector("#file-input").files;
-    //   const fileName = e.target.value;
-    //   const contents = await this.readFile(all_files[0]);
-    //   const df = search_bmi(contents);
-    //   console.log(contents);
-    //   this.setState({
-    //     fileLoaded: true,
-    //     fileName,
-    //     contents,
-    //   });
-    // }
-
-  }, {
     key: "render",
     value: function render() {
       // const { fileName, fileLoaded, contents } = this.state;
@@ -2559,6 +2508,11 @@ var FileUpload = function FileUpload() {
       uploadDisabled = _useState12[0],
       setUploadDisabled = _useState12[1];
 
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState14 = _slicedToArray(_useState13, 2),
+      tmpRes = _useState14[0],
+      setTmpRes = _useState14[1];
+
   var onChange = function onChange(e) {
     setFile(e.target.files[0]);
     setFilename(e.target.files[0].name);
@@ -2566,8 +2520,7 @@ var FileUpload = function FileUpload() {
 
   var onSubmit = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
-      var formData, res, _res$data, fileName, filePath;
-
+      var formData, res, resObj;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -2582,7 +2535,7 @@ var FileUpload = function FileUpload() {
                   'Content-Type': 'multipart/form-data'
                 },
                 onUploadProgress: function onUploadProgress(progressEvent) {
-                  setUploadPercentage(parseInt(Math.round(progressEvent.loaded * 100 / progressEvent.total))); // Clear percentage
+                  setUploadPercentage(parseInt(Math.round(progressEvent.loaded * 100 / progressEvent.total), 10)); // Clear percentage
                   // setTimeout(() => setUploadPercentage(0), 10000);
 
                   setUploadDisabled(true);
@@ -2591,12 +2544,8 @@ var FileUpload = function FileUpload() {
 
             case 6:
               res = _context.sent;
-              _res$data = res.data, fileName = _res$data.fileName, filePath = _res$data.filePath;
-              setUploadedFile({
-                fileName: fileName,
-                filePath: filePath
-              }); // setMessage('File Uploaded');
-
+              resObj = JSON.parse(res.data);
+              setTmpRes(JSON.stringify(resObj));
               setUploadDisabled(false);
               _context.next = 16;
               break;
@@ -2641,7 +2590,7 @@ var FileUpload = function FileUpload() {
     type: "submit",
     value: "Upload",
     disabled: uploadDisabled
-  })), uploadedFile !== undefined && uploadedFile !== null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, uploadedFile.fileName + ' Uploaded Successfully.') : '');
+  })), uploadedFile !== undefined && uploadedFile !== null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "".concat(uploadedFile.fileName, " Uploaded Successfully.")) : '', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, tmpRes));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (FileUpload);

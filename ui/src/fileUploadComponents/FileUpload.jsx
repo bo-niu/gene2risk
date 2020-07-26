@@ -12,6 +12,7 @@ const FileUpload = () => {
   const [message, setMessage] = useState('');
   const [uploadPercentage, setUploadPercentage] = useState(0);
   const [uploadDisabled, setUploadDisabled] = useState(false);
+  const [tmpRes, setTmpRes] = useState('');
 
   const onChange = (e) => {
     setFile(e.target.files[0]);
@@ -26,13 +27,14 @@ const FileUpload = () => {
     try {
       const res = await axios.post('/upload', formData, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'multipart/form-data',
         },
         onUploadProgress: (progressEvent) => {
           setUploadPercentage(
             parseInt(
-              Math.round((progressEvent.loaded * 100) / progressEvent.total)
-            )
+              Math.round((progressEvent.loaded * 100) / progressEvent.total),
+              10,
+            ),
           );
 
           // Clear percentage
@@ -40,12 +42,8 @@ const FileUpload = () => {
           setUploadDisabled(true);
         },
       });
-
-      const { fileName, filePath } = res.data;
-
-      setUploadedFile({ fileName, filePath });
-
-      // setMessage('File Uploaded');
+      const resObj = JSON.parse(res.data);
+      setTmpRes(JSON.stringify(resObj));
 
       setUploadDisabled(false);
     } catch (err) {
@@ -76,8 +74,9 @@ const FileUpload = () => {
         />
       </form>
       {uploadedFile !== undefined && uploadedFile !== null ? (
-        <h3>{uploadedFile.fileName + ' Uploaded Successfully.'}</h3>
+        <h3>{`${uploadedFile.fileName} Uploaded Successfully.`}</h3>
       ) : ''}
+      <div>{tmpRes}</div>
     </div>
   );
 };

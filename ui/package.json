@@ -31,6 +31,7 @@
     "pandas-js": "^0.2.4",
     "plotly.js": "^1.54.6",
     "prop-types": "^15.7.2",
+    "python-shell": "^2.0.1",
     "react": "^16.13.1",
     "react-bootstrap": "^0.33.1",
     "react-dom": "^16.13.1",
