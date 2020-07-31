@@ -5,7 +5,7 @@ import Progress from './Progress.jsx';
 import '../css/fileUpload.css';
 
 /* eslint "no-unused-vars": "off" */
-const FileUpload = () => {
+const FileUpload = (props) => {
   const [file, setFile] = useState('');
   const [filename, setFilename] = useState('Choose File');
   const [uploadedFile, setUploadedFile] = useState(undefined);
@@ -43,7 +43,20 @@ const FileUpload = () => {
         },
       });
       const resObj = JSON.parse(res.data);
+      console.log('we got the resObj.');
+      console.log(resObj);
       setTmpRes(JSON.stringify(resObj));
+      console.log('finished setTmpRes(JSON.stringify(resObj));');
+      const setPlot = props.setPlot;
+      console.log('finished const setPlot = props.setPlot;');
+      const result = {
+        x: resObj.figure[0].data[0].x,
+        y: resObj.figure[0].data[0].y,
+        array: resObj.figure[0].data[0].error_y.array,
+      };
+      console.log('result:  hehe');
+      console.log(result);
+      setPlot(result);
 
       setUploadDisabled(false);
     } catch (err) {
