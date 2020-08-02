@@ -4,6 +4,7 @@ import axios from 'axios';
 import Message from './Message.jsx';
 import Progress from './Progress.jsx';
 import '../css/fileUpload.css';
+import '../css/uploadFileSubmit.css';
 
 /* eslint "no-unused-vars": "off" */
 const FileUpload = (props) => {
@@ -74,19 +75,30 @@ const FileUpload = (props) => {
     <div>
       {message ? <Message msg={message} /> : null}
 
-      <form onSubmit={onSubmit} className="uploadFileForm">
-        <input
-          type="file"
-          onChange={onChange}
-          required
-        />
-        <Progress percentage={uploadPercentage} />
-        <input
-          type="submit"
-          value="Upload"
-          disabled={uploadDisabled}
-        />
-      </form>
+      <div className="col-md-6">
+        <form onSubmit={onSubmit} className="uploadFileForm" action="#" id="#">
+          <div className="form-group files">
+            {/* <label>Upload Your File </label> */}
+            <input
+              type="file"
+              onChange={onChange}
+              className="form-control"
+              multiple=""
+              required
+            />
+          </div>
+          <Progress percentage={uploadPercentage} />
+          <button
+            // className="uploadFileSubmit"
+            type="submit"
+            className="btn btn-primary"
+            disabled={uploadDisabled}
+          >
+            Upload
+          </button>
+        </form>
+      </div>
+
       {uploadedFile !== undefined && uploadedFile !== null ? (
         <h3>{`${uploadedFile.fileName} Uploaded Successfully.`}</h3>
       ) : ''}
