@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
 import axios from 'axios';
 import Message from './Message.jsx';
@@ -47,7 +48,7 @@ const FileUpload = (props) => {
       console.log(resObj);
       setTmpRes(JSON.stringify(resObj));
       console.log('finished setTmpRes(JSON.stringify(resObj));');
-      const setPlot = props.setPlot;
+      const { setPlot } = props;
       console.log('finished const setPlot = props.setPlot;');
       const result = {
         x: resObj.figure[0].data[0].x,

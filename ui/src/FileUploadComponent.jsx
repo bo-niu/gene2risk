@@ -5,7 +5,7 @@ import FileUpload from './fileUploadComponents/FileUpload.jsx';
 
 class FileUploadComponent extends React.Component {
   render() {
-    const setPlot = this.props.setPlot;
+    const { setPlot } = this.props;
     return (
       <div>
         <h4>
@@ -15,7 +15,6 @@ class FileUploadComponent extends React.Component {
       </div>
     );
   }
-  
 }
 
 export default FileUploadComponent;
