@@ -5,7 +5,8 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: { app: ['./src/App.jsx'] },
+  // entry: { app: ['./src/App.jsx'] },
+  entry: { app: ['./src/index.js'] },
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'public'),
@@ -19,8 +20,18 @@ module.exports = {
         use: 'babel-loader',
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        test: /\.s?css$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+      {
+        test: /.(svg|png|jpg|jpeg|gif)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[hash].[ext]',
+            outputPath: 'img',
+          },
+        },
       },
     ],
   },

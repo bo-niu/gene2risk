@@ -4,13 +4,12 @@ import axios from 'axios';
 import Message from './Message.jsx';
 import Progress from './Progress.jsx';
 import '../css/fileUpload.css';
-import '../css/uploadFileSubmit.css';
 
 /* eslint "no-unused-vars": "off" */
 const FileUpload = (props) => {
   const [file, setFile] = useState('');
-  const [filename, setFilename] = useState('Choose File');
-  const [uploadedFile, setUploadedFile] = useState(undefined);
+  // const [filename, setFilename] = useState('Choose File');
+  // const [uploadedFile, setUploadedFile] = useState(undefined);
   const [message, setMessage] = useState('');
   const [uploadPercentage, setUploadPercentage] = useState(0);
   const [uploadDisabled, setUploadDisabled] = useState(false);
@@ -18,7 +17,7 @@ const FileUpload = (props) => {
 
   const onChange = (e) => {
     setFile(e.target.files[0]);
-    setFilename(e.target.files[0].name);
+    // setFilename(e.target.files[0].name);
   };
 
   const onSubmit = async (e) => {
@@ -99,9 +98,9 @@ const FileUpload = (props) => {
         </form>
       </div>
 
-      {uploadedFile !== undefined && uploadedFile !== null ? (
+      {/* {uploadedFile !== undefined && uploadedFile !== null ? (
         <h3>{`${uploadedFile.fileName} Uploaded Successfully.`}</h3>
-      ) : ''}
+      ) : ''} */}
       <div>{tmpRes}</div>
     </div>
   );

@@ -52,6 +52,9 @@ app.post('/upload', (req, res) => {
     return res.status(400).json({ msg: 'No file uploaded' });
   }
 
+  console.log('the whole req is:');
+  console.log(req);
+
   // const file = req.files.file;
   const { files: { file } } = req;
 
@@ -69,7 +72,7 @@ app.post('/upload', (req, res) => {
       pythonPath: path.join(__dirname, '../gene2riskPythonEnv/Scripts/python.exe'),
       pythonOptions: ['-u'], // get print results in real-time
       scriptPath: path.join(__dirname, 'pythonScripts'),
-      args: [path.join(__dirname, 'uploads/tommy_23andme.txt').replace(/\\/g, '/')],
+      args: [path.join(__dirname, `uploads/${file.name}`).replace(/\\/g, '/')],
     };
 
     // console.log('args: ', path.join(__dirname, 'uploads/tommy_23andme.txt').replace(/\\/g, '/'));
@@ -92,7 +95,8 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve('public/index.html'));
 });
 
-const port = process.env.UI_SERVER_PORT || 8000;
+// const port = process.env.UI_SERVER_PORT || 8000;
+const port = 7000;
 
 app.listen(port, () => {
   console.log(`UI started on port ${port}`);
