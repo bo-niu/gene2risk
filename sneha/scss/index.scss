@@ -1,0 +1,63 @@
+
+@import "variables";
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+h1 {
+  font-style: normal;
+  font-weight: normal;
+  font-family: $font-big;
+  font-size: 48px;
+  line-height: 80px;
+  color: $darkblue;
+}
+
+p {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 35px;
+  color: $black;
+}
+
+.body {
+    height: 125vh;
+    background-size: cover;
+    margin-top: 80px;
+    padding: 30px;
+}
+
+.hero {
+  position:absolute;
+  width: 1444px;
+  height: 483px;
+  left: -100px;
+
+  background: $pink;
+  border-radius: 55px;
+
+  .hero-text {
+      padding-top: 100px;
+      margin-left: 60px;
+  }
+
+  .hero-subtext {
+    margin-left:125px;
+  }
+}
+
+.footer {
+  background: $darkblue;
+}
+//LARGE SCREENS
+@media (min-width: $breakpoint-tablet) {
+
+}
+
+//MOBILE SCREENS
+@media (max-width: $breakpoint-tablet) {
+}

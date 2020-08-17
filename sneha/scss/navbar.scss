@@ -1,0 +1,45 @@
+//navbar SCSS file
+@import "variables";
+
+.logo {
+  height: 45px;
+  margin-left: 40px;
+}
+
+.usericon {
+  width: 1.2rem;
+  position: absolute;
+  right: 20px;
+}
+
+.navbar {
+    background-color: $lightblue;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 10px 0 $lightblue;
+}
+
+.navbar * {
+  display: inline;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-left: 200px;
+  margin-right: auto;
+}
+
+li {
+   margin: 60px;
+}
+
+.links {
+  color: #283790;
+  text-decoration: none;
+}
