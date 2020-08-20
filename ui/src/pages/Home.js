@@ -2,6 +2,7 @@ import React from 'react';
 import '../css/index.css';
 import NavBar from '../components/NavBar';
 import Dropzone from '../Dropzone';
+import Plotly from '../Plotly';
 import { Link } from "react-router-dom";
 
 
@@ -16,6 +17,7 @@ function Home(props) {
         <p className="hero-subtext">Stay one step ahead of life. Learn more about your genetic health today.</p>
         </div>
         <Dropzone />
+        <Plotly />
       </div>
     </div>
   );

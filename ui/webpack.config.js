@@ -1,6 +1,8 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const webpack = require('webpack');
+const CompressionPlugin = require('compression-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const browserConfig = {
   mode: 'development',
@@ -55,11 +57,13 @@ const browserConfig = {
       name: 'vendor',
       chunks: 'all',
     },
+    minimizer: [new UglifyJsPlugin()],
   },
   plugins: [
     new webpack.DefinePlugin({
       __isBrowser__: 'true',
     }),
+    new CompressionPlugin(),
   ],
   devtool: 'source-map',
 };
@@ -111,10 +115,14 @@ const serverConfig = {
       },
     ],
   },
+  optimization: {
+    // minimizer: [new UglifyJsPlugin()],
+  },
   plugins: [
     new webpack.DefinePlugin({
       __isBrowser__: 'false',
     }),
+    // new CompressionPlugin(),
   ],
   devtool: 'source-map',
 };

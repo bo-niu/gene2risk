@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const { connectToDb } = require('./db.js');
+// const { connectToDb } = require('./db.js');
 const { installHandler } = require('./api_handler.js');
 
 const fs = require('fs');
@@ -22,7 +22,7 @@ const port = process.env.API_SERVER_PORT || 3000;
 
 (async function start() {
   try {
-    await connectToDb();
+    // await connectToDb();
     app.listen(port, () => {
       console.log(`API server started on port ${port}`);
     });
