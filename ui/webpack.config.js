@@ -1,12 +1,10 @@
-// webpack configuration for css: https://www.youtube.com/watch?v=rrMGUnBmjwQ
 const path = require('path');
-// const webpack = require('webpack');
-// require('dotenv').config();
+const nodeExternals = require('webpack-node-externals');
+const webpack = require('webpack');
 
-module.exports = {
+const browserConfig = {
   mode: 'development',
-  // entry: { app: ['./src/App.jsx'] },
-  entry: { app: ['./src/index.js'] },
+  entry: { app: ['./browser/App.js'] },
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'public'),
@@ -17,7 +15,23 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: 'babel-loader',
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ['@babel/preset-env', {
+                targets: {
+                  ie: '11',
+                  edge: '15',
+                  safari: '10',
+                  firefox: '50',
+                  chrome: '49',
+                },
+              }],
+              '@babel/preset-react',
+            ],
+          },
+        },
       },
       {
         test: /\.s?css$/,
@@ -28,8 +42,9 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
-            name: '[name].[hash].[ext]',
-            outputPath: 'img',
+            name: '[hash].[ext]',
+            publicPath: '/images/',
+            outputPath: 'images',
           },
         },
       },
@@ -41,10 +56,67 @@ module.exports = {
       chunks: 'all',
     },
   },
-  // plugins: [
-  //   new webpack.DefinePlugin({
-  //     __UI_API_ENDPOINT__: `'${process.env.UI_API_ENDPOINT}'`,
-  //   })
-  // ],
+  plugins: [
+    new webpack.DefinePlugin({
+      __isBrowser__: 'true',
+    }),
+  ],
   devtool: 'source-map',
 };
+
+const serverConfig = {
+  mode: 'development',
+  entry: { server: ['./server/uiserver.js'] },
+  target: 'node',
+  externals: [nodeExternals()],
+  output: {
+    filename: 'server.js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ['@babel/preset-env', {
+                targets: { node: '10' },
+              }],
+              '@babel/preset-react',
+            ],
+          },
+        },
+      },
+      {
+        test: /\.s?css$/,
+        // use: ['style-loader', 'css-loader', 'sass-loader'],
+        loader: 'css-loader',
+        options: {
+          modules: {
+            exportOnlyLocals: true,
+          },
+        },
+      },
+      {
+        test: /.(svg|png|jpg|jpeg|gif)$/,
+        loader: 'file-loader',
+        options: {
+          emitFile: false,
+          publicPath: '/images/',
+          outputPath: 'images',
+        },
+      },
+    ],
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      __isBrowser__: 'false',
+    }),
+  ],
+  devtool: 'source-map',
+};
+
+module.exports = [browserConfig, serverConfig];

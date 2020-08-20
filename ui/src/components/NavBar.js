@@ -1,10 +1,12 @@
 import React from 'react';
 import '../css/navbar.css';
 import logo from '../img/logo.png';
-import usericon from '../img/usericon.png';
+
+import SignInNavItem from '../SignInNavItem';
 import { Link } from "react-router-dom";
 
-function NavBar() {
+function NavBar(props) {
+  const { onUserChange } = props;
   return (
     <div className="navbar">
     <Link to="/" className="cardlinks"><img className="logo" src={logo}/></Link>
@@ -13,7 +15,7 @@ function NavBar() {
         <li><Link to="/AboutUs" className="links">AboutUs</Link></li>
         <li><Link to="/FAQ" className="links">FAQ</Link></li>
       </ul>
-      <img className="usericon" src={usericon}/>
+      <SignInNavItem onUserChange={onUserChange}/>
     </div>
   );
 }

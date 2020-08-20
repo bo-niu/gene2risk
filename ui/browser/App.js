@@ -1,13 +1,13 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
+// import registerServiceWorker from './registerServiceWorker';
 import Page from '../src/Page.js';
 import store from '../src/store.js';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-// ReactDOM.render(<App />, document.getElementById('root'));
 
+/* eslint-disable no-underscore-dangle */
 store.initialData = window.__INITIAL_DATA__;
 store.userData = window.__USER_DATA__;
 const element = (

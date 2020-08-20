@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function GetStarted() {
   return (
     <div className="GetStarted">
-    <Link to="/" className="cardlinks">Back</Link>
+      <Link to="/" className="cardlinks">Back</Link>
       <h1>GetStarted</h1>
     </div>
   );

@@ -1,10 +1,10 @@
 {
-  "extends": "airbnb",
   "env": {
-    "browser": true
+    "browser": true,
+    "node": true
   },
   "rules": {
-    "import/extensions": ["error", "always", { "ignorePackages": true }],
-    "react/prop-types": "off"
+    // "import/extensions": ["error", "always", { "ignorePackages": true }],
+    // "react/prop-types": "off"
   }
 }
