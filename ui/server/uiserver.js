@@ -35,6 +35,7 @@ const apiProxyTarget = process.env.API_PROXY_TARGET;
 if (apiProxyTarget) {
   app.use('/graphql', proxy({ target: apiProxyTarget }));
   app.use('/auth', proxy({ target: apiProxyTarget }));
+  app.use('/23meupload', proxy({ target: apiProxyTarget }));
 }
 
 if (!process.env.UI_API_ENDPOINT) {
