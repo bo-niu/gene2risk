@@ -6,21 +6,38 @@ import Plotly from '../Plotly';
 import { Link } from "react-router-dom";
 
 
-function Home(props) {
-  const { onUserChange } = props;
-  return (
-    <div className="Home">
-      <NavBar onUserChange={onUserChange} />
-      <div className="body">
-        <div className="hero">
-        <h1 className="hero-text">Be educated about your natural risk</h1>
-        <p className="hero-subtext">Stay one step ahead of life. Learn more about your genetic health today.</p>
+class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.setPlot = this.setPlot.bind(this);
+    this.state = {
+      x: null,
+      y: null,
+      array: null,
+    };
+  }
+
+  setPlot({ x, y, array }) {
+    this.setState({ x, y, array });
+  }
+
+  render() {
+    const { onUserChange } = this.props;
+    const { x, y, array } = this.state;
+    return (
+      <div className="Home">
+        <NavBar onUserChange={onUserChange} />
+        <div className="body">
+          <div className="hero">
+          <h1 className="hero-text">Be educated about your natural risk</h1>
+          <p className="hero-subtext">Stay one step ahead of life. Learn more about your genetic health today.</p>
+          </div>
+          <Dropzone setPlot={this.setPlot} />
+          <Plotly x={x} y={y} array={array} />
         </div>
-        <Dropzone />
-        <Plotly />
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Home;

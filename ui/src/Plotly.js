@@ -19,37 +19,25 @@ export default class Plotly extends React.Component {
   render() {
     const { Plot } = this.state;
     if (!Plot) return null;
+    const { x, y, array } = this.props;
     const plotComponent = (
       <Plot
         data={[{
-          type: 'violin',
-          x: this.day,
-          y: this.totalBill,
-          points: 'none',
-          box: {
-            visible: true,
+          x, //: list(genotype_bmi),
+          type: 'bar',
+          y, //: list(contribution_bmi.values()),
+          error_y: {
+            array, //: list(error_bmi.values()),
+            type: 'percent',
           },
-          line: {
-            color: 'green',
-          },
-          meanline: {
-            visible: true,
-          },
-          transforms: [{
-            type: 'groupby',
-            groups: this.day,
-            styles: [
-              { target: 'Sun', value: { line: { color: 'blue' } } },
-              { target: 'Sat', value: { line: { color: 'orange' } } },
-              { target: 'Thur', value: { line: { color: 'green' } } },
-              { target: 'Fri', value: { line: { color: 'red' } } },
-            ],
-          }],
         }]}
         layout={{
-          title: 'Multiple Traces Violin Plot',
+          title: 'Contributions of different SNPs to BMI Polygenic risk scores',
           yaxis: {
-            zeroline: false,
+            title: 'Contributions',
+          },
+          xaxis: {
+            title: 'Genotypes',
           },
         }}
       />
