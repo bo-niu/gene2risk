@@ -3,6 +3,8 @@ import '../css/index.css';
 import NavBar from '../components/NavBar';
 import Dropzone from '../Dropzone';
 import Plotly from '../Plotly';
+import Stepper from '../Stepper';
+import DatePicker from '../DatePicker';
 import { Link } from "react-router-dom";
 
 
@@ -34,6 +36,8 @@ class Home extends React.Component {
           </div>
           <Dropzone setPlot={this.setPlot} />
           <Plotly x={x} y={y} array={array} />
+          <Stepper />
+          <DatePicker />
         </div>
       </div>
     );
