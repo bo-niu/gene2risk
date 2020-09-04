@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/subpage.css';
+// import '../css/subpage.css';
 import { Link } from "react-router-dom";
 
 

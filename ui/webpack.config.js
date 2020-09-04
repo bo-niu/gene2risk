@@ -40,6 +40,18 @@ const browserConfig = {
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/'
+            }
+          }
+        ]
+      },
+      {
         test: /.(svg|png|jpg|jpeg|gif)$/,
         use: {
           loader: 'file-loader',
@@ -102,6 +114,13 @@ const serverConfig = {
           modules: {
             exportOnlyLocals: true,
           },
+        },
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'file-loader',
+        options: {
+          emitFile: false,
         },
       },
       {

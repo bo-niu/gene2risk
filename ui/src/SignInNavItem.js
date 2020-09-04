@@ -112,7 +112,8 @@ class SigninNavItem extends React.Component {
     return (
       <>
         <NavItem onClick={this.showModal}>
-          <img className="usericon" src={usericon} style={{ cursor: 'pointer' }}/>
+          {/* <img className="usericon" src={usericon} style={{ cursor: 'pointer' }}/> */}
+          Sign in
         </NavItem>
         <Modal keyboard show={showing} onHide={this.hideModal} size="sm">
           <Modal.Header closeButton>

@@ -6,8 +6,7 @@ export default function template(body, initialData, userData) {
   <html lang="en">
     <head>
       <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <meta name="theme-color" content="#000000">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="shortcut icon" href="/icon.png">
 
       <title>Happy News | A Postive News Site </title>
