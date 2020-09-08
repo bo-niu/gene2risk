@@ -1,0 +1,21 @@
+.example_d {
+  color: #20bf6b !important;
+  text-transform: uppercase;
+  background: #ffffff;
+  padding: 20px;
+  border: 2px solid #20bf6b !important;
+  border-radius: 6px;
+  display: inline-block;
+  transition: all 0.3s ease 0s;
+  width: 40vw;
+  height: 10vw;
+  font-size: 4vw;
+  margin: 4vh;
+  }
+
+  .example_d:hover {
+    color: #ffffff !important;
+    background: #20bf6b;
+    border-color: #20bf6b !important;
+    transition: all 0.4s ease 0s;
+    }

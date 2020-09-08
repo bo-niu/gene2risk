@@ -6,7 +6,8 @@ import withToast from './withToast.js';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import usericon from './img/usericon.png';
 import UserContext from './UserContext.js';
-
+import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
+  MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from "mdbreact";
 
 
 class SigninNavItem extends React.Component {
@@ -79,6 +80,7 @@ class SigninNavItem extends React.Component {
       await auth2.signOut();
       const { onUserChange } = this.props;
       onUserChange({ signedIn: false, givenName: '' });
+      console.log('signout finished');
     } catch (error) {
       showError(`Error signing out: ${error}`);
     }
@@ -99,22 +101,42 @@ class SigninNavItem extends React.Component {
   }
 
   render() {
-    const user = this.context;
+    const { user } = this.props;
+    console.log('user is: ', user);
     if (user.signedIn) {
+      console.log('user signed in');
       return (
-        <NavDropdown title={user.givenName} id="user">
-          <NavDropdown.Item onClick={this.signOut}>Sign out</NavDropdown.Item>
-        </NavDropdown>
+        <MDBNavItem>
+          <MDBDropdown dropdown-menu-right>
+            <MDBDropdownToggle nav caret className="waves-effect waves-light">
+              <div className="d-none d-md-inline"><strong>Hello {user.givenName}</strong></div>
+            </MDBDropdownToggle>
+            <MDBDropdownMenu className="dropleft" right>
+              <MDBDropdownItem onClick={this.signOut}>Sign out</MDBDropdownItem>
+            </MDBDropdownMenu>
+          </MDBDropdown>
+        </MDBNavItem>
       );
     }
-
+    console.log('user not signed in');
     const { showing, disabled } = this.state;
     return (
       <>
-        <NavItem onClick={this.showModal}>
-          {/* <img className="usericon" src={usericon} style={{ cursor: 'pointer' }}/> */}
-          Sign in
-        </NavItem>
+        <MDBNavItem>
+          <MDBDropdown dropdown-menu-right>
+            <MDBDropdownToggle nav caret className="waves-effect waves-light">
+              <MDBIcon icon="user"/>
+            </MDBDropdownToggle>
+            <MDBDropdownMenu right >
+              <MDBDropdownItem>
+                <NavItem onClick={this.showModal}>
+                  Sign in
+                </NavItem>
+              </MDBDropdownItem>
+            </MDBDropdownMenu>
+          </MDBDropdown>
+        </MDBNavItem>
+
         <Modal keyboard show={showing} onHide={this.hideModal} size="sm">
           <Modal.Header closeButton>
             <Modal.Title>Sign in</Modal.Title>

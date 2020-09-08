@@ -5,6 +5,8 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import UserInfo from './UserInfo';
+import Dropzone from './Dropzone';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,17 +22,33 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
+  return ['User Agreement', 'Basic Information', 'Gene File', 'Confirmation'];
 }
 
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return 'Select campaign settings...';
+      return (
+        <>
+          <div style={{width: '60%', marginLeft: '20%', marginRight: '20%', marginTop:'5%'}}>
+            {'GenoCode will not collect or use any data from users.Your genetic test file will be analyzed on the website and you need to save the given risk result for your own use. Once you close the website, you need to upload the file again to see the result. If you have questions, concerns, complaints, or suggestions about our website, you can reach out to us via email.'}
+          </div>
+          <br /><br />
+          <div className="form-check" style={{width: '60%', marginLeft: '20%', marginRight: '20%'}}>
+            <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" />
+            <label className="form-check-label" for="defaultCheck1">
+              I agree
+            </label>
+          </div>
+          <br /><br />
+        </>
+      );
     case 1:
-      return 'What is an ad group anyways?';
+      return <UserInfo />;
     case 2:
-      return 'This is the bit I really care about!';
+      return <div style={{width: '60%', marginLeft: '20%', marginRight: '20%', marginTop:'5%'}}><Dropzone /><br /><br /></div>;
+    case 3:
+      return 'Are you sure?';
     default:
       return 'Unknown step';
   }

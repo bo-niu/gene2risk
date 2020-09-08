@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import SignInNavItem from './SignInNavItem';
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
 MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from "mdbreact";
 // import { BrowserRouter as Router } from 'react-router-dom';
@@ -7,6 +8,12 @@ import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
 import '../node_modules/bootstrap-css-only/css/bootstrap.min.css'; 
 import '../node_modules/mdbreact/dist/css/mdb.css';
 import logo from './img/logo50.png';
+import {
+  Link,
+} from "react-router-dom";
+import {
+  NavDropdown,
+} from 'react-bootstrap';
 class NavbarPage extends Component {
 
   constructor() {
@@ -15,6 +22,7 @@ class NavbarPage extends Component {
       isOpen: false
     };
     this.toggleCollapse = this.toggleCollapse.bind(this);
+    this.test = this.test.bind(this);
   }
 
 
@@ -22,26 +30,31 @@ toggleCollapse() {
   this.setState({ isOpen: !this.state.isOpen });
 }
 
+test() {
+  console.log('clicked');
+}
+
 render() {
+  const { user, onUserChange } = this.props;
   return (
     // <Router>
       <MDBNavbar color="green" dark expand="sm">
         <MDBNavbarBrand>
           {/* <strong className="white-text">Navbar</strong> */}
-          <img className="logo" src={logo}/>
+          <Link to="/"><img className="logo" src={logo}/></Link>
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           <MDBNavbarNav left>
             {/* <MDBNavItem active> */}
             <MDBNavItem className="mx-xl-5 mx-lg-5 mx-md-5 mx-sm-2" >
-              <MDBNavLink to="/GetStarted">GetStarted</MDBNavLink>
+              <MDBNavLink to="/GetStarted"><strong>Get Started</strong></MDBNavLink>
             </MDBNavItem>
             <MDBNavItem className="mx-xl-5 mx-lg-5 mx-md-5 mx-sm-2">
-              <MDBNavLink to="/AboutUs">AboutUs</MDBNavLink>
+              <MDBNavLink to="/AboutUs"><strong>About Us</strong></MDBNavLink>
             </MDBNavItem>
             <MDBNavItem className="mx-xl-5 mx-lg-5 mx-md-5 mx-sm-2">
-              <MDBNavLink to="/FAQ">FAQ</MDBNavLink>
+              <MDBNavLink to="/FAQ"><strong>FAQ</strong></MDBNavLink>
             </MDBNavItem>
             {/* <MDBNavItem>
               <MDBDropdown>
@@ -70,24 +83,7 @@ render() {
                 Login
               </MDBNavLink>
             </MDBNavItem> */}
-            <MDBNavItem>
-              <MDBDropdown dropdown-menu-right>
-                <MDBDropdownToggle nav caret className="waves-effect waves-light">
-                  <MDBIcon icon="user"/>
-                </MDBDropdownToggle>
-                {/* <DropdownButton
-                  alignRight
-                  title="Dropdown right"
-                  // id="dropdown-menu-align-right"
-                ></DropdownButton> */}
-                <MDBDropdownMenu right >
-                  <MDBDropdownItem href="#!">Action</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Another Action</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
-                </MDBDropdownMenu>
-              </MDBDropdown>
-            </MDBNavItem>
+            <SignInNavItem user={user} onUserChange={onUserChange} />
           </MDBNavbarNav>
         </MDBCollapse>
       </MDBNavbar>
