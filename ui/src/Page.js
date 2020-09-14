@@ -17,6 +17,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import logo from './img/logo50.png';
 import NavbarPage from './NavbarPage';
 import Footer from './Footer';
+import { ToastProvider, useToasts } from 'react-toast-notifications'
 
 export default class Page extends React.Component {
   static async fetchData(cookie) {
@@ -55,12 +56,14 @@ export default class Page extends React.Component {
     if (user == null) return null;
     return (
       <div>
-        <NavbarPage user={user} onUserChange={this.onUserChange} />
-        {/* <NavbarPage user={user} onUserChange={this.onUserChange} /> */}
-        <UserContext.Provider value={user}>
-          <Contents onUserChange={this.onUserChange} />
-        </UserContext.Provider>
-        <Footer />
+        <ToastProvider>
+          <NavbarPage user={user} onUserChange={this.onUserChange} />
+          {/* <NavbarPage user={user} onUserChange={this.onUserChange} /> */}
+          <UserContext.Provider value={user}>
+            <Contents onUserChange={this.onUserChange} />
+          </UserContext.Provider>
+          <Footer />
+        </ToastProvider>
       </div>
     );
   }
