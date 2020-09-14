@@ -34,6 +34,7 @@ app.get('*.js', function (req, res, next) {
   if (req.url !== '/env.js') {
     req.url = req.url + '.gz';
     res.set('Content-Encoding', 'gzip');
+    res.set('Content-Type', 'text/javascript');
   }
   next();
 });
