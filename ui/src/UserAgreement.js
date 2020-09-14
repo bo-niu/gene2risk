@@ -20,12 +20,12 @@ const useStyles = makeStyles((theme) => ({
 
 const UserAgreement = (props) => {
   const classes = useStyles();
-  const { handleNext, handleBack, handleSkip } = props;
+  const { handleNext, handleBack, handleSkip, agreementAgreed, setAgreementAgreed } = props;
   const { addToast } = useToasts();
-  const [userAgreementChecked, setUserAgreementCheckBox] = React.useState(false);
+  // const [userAgreementChecked, setUserAgreementCheckBox] = React.useState(false);
   const onClick = () => {
 
-    if (userAgreementChecked == false) {
+    if (agreementAgreed == false) {
       addToast('Please agree our user agreement before going to the next step.', {
         appearance: 'info',
         autoDismiss: true,
@@ -37,7 +37,7 @@ const UserAgreement = (props) => {
   };
 
   const handleCheckBoxChange = (event) => {
-    setUserAgreementCheckBox(event.target.checked);
+    setAgreementAgreed(event.target.checked);
   };
 
   return (
@@ -51,7 +51,7 @@ const UserAgreement = (props) => {
       <div className="form-check" style={{width: '60%', marginLeft: '20%', marginRight: '20%'}}>
         {/* <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" /> */}
         <Checkbox
-        checked={userAgreementChecked}
+        checked={agreementAgreed}
         onChange={handleCheckBoxChange}
         color="primary"
         inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -77,7 +77,6 @@ const UserAgreement = (props) => {
             Skip
           </Button>
         )} */}
-
         <Button
           variant="contained"
           color="primary"

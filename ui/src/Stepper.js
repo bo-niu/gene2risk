@@ -31,9 +31,16 @@ export default function HorizontalLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
   const steps = getSteps();
+  const [agreementAgreed, setAgreementAgreed] = React.useState(false);
+  const [firstName, setFirstName] = React.useState('');
+  const [lastName, setLastName] = React.useState('');
+  const [gender, setGender] = React.useState('');
+  const [weight, setWeight] = React.useState('');
+  const [birthday, setBirthday] = React.useState(new Date('2000-01-01T00:00:00'));
 
   const isStepOptional = (step) => {
-    return step === 1;
+    // return step === 1;
+    return false;
   };
 
   const isStepSkipped = (step) => {
@@ -78,9 +85,31 @@ export default function HorizontalLinearStepper() {
     const classes = useStyles();
     switch (step) {
       case 0:
-        return <UserAgreement handleNext={handleNext} handleBack={handleBack} handleSkip={handleSkip} />;
+        return (
+        <UserAgreement
+          handleNext={handleNext}
+          handleBack={handleBack}
+          handleSkip={handleSkip}
+          agreementAgreed={agreementAgreed}
+          setAgreementAgreed={setAgreementAgreed}
+        />);
       case 1:
-        return <UserInfo handleNext={handleNext} handleBack={handleBack} handleSkip={handleSkip} />;
+        return (
+        <UserInfo
+          handleNext={handleNext}
+          handleBack={handleBack}
+          handleSkip={handleSkip}
+          firstName={firstName}
+          setFirstName={setFirstName}
+          lastName={lastName}
+          setLastName={setLastName}
+          gender={gender}
+          setGender={setGender}
+          weight={weight}
+          setWeight={setWeight}
+          birthday={birthday}
+          setBirthday={setBirthday}
+        />);
       case 2:
         return <div style={{width: '60%', marginLeft: '20%', marginRight: '20%', marginTop:'5%'}}><Dropzone /><br /><br /></div>;
       case 3:

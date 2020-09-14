@@ -7,23 +7,26 @@ import {
   KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import InputLabel from '@material-ui/core/InputLabel';
 
-export default function MaterialUIPickers() {
+export default function MaterialUIPickers(props) {
   // The first commit of Material-UI
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
-
+  const { birthday, setBirthday } = props;
   const handleDateChange = (date) => {
-    setSelectedDate(date);
+    setBirthday(date);
   };
-
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <InputLabel id="birthdayLabel">
+        Birthday
+      </InputLabel>
       <KeyboardDatePicker
         margin="normal"
         id="date-picker-dialog"
-        label="Your birthday"
+        labelId="birthdayLabel"
+        // label="Your birthday"
         format="MM/dd/yyyy"
-        value={selectedDate}
+        value={birthday}
         onChange={handleDateChange}
         KeyboardButtonProps={{
           'aria-label': 'change date',

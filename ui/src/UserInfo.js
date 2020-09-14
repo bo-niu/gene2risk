@@ -12,6 +12,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Select from '@material-ui/core/Select';
 import clsx from 'clsx';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,13 +23,34 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
+  button: {
+    marginRight: theme.spacing(1),
+  },
 }));
 
-export default function UserInfo() {
+export default function UserInfo(props) {
   const classes = useStyles();
-  const [gender, setGender] = React.useState('');
-  const handleGenderChange = (event) => {
-    setGender(event.target.value);
+  const {
+    handleNext, handleBack, handleSkip, firstName, setFirstName, lastName,
+    setLastName, gender, setGender, weight, setWeight, birthday, setBirthday
+  } = props;
+  const onClick = () => {
+    handleNext();
+  };
+  const onLastNameChange = (e) => {
+    setLastName(e.target.value);
+  };
+  const onFirstNameChange = (e) => {
+    setFirstName(e.target.value);
+  };
+  const onGenderChange = (e) => {
+    setGender(e.target.value);
+  };
+  const onWeightChange = (e) => {
+    setWeight(e.target.value);
+  };
+  const onBirthdayChange = (e) => {
+    setBirthday(e.target.value);
   };
   return (
     <div style={{marginLeft: '20%', marginRight: '20%', marginTop: '100px', marginBottom: '100px'}}>
@@ -38,6 +60,8 @@ export default function UserInfo() {
             <InputLabel htmlFor="FirstNameInput">First Name</InputLabel>
             <Input
               id="FirstNameInput"
+              value={firstName}
+              onChange={onFirstNameChange}
               startAdornment={
                 <InputAdornment position="start">
                   <AccountCircle />
@@ -49,6 +73,8 @@ export default function UserInfo() {
             <InputLabel htmlFor="LastNameInput">Last Name</InputLabel>
             <Input
               id="LastNameInput"
+              defaultValue={lastName}
+              onChange={onLastNameChange}
               startAdornment={
                 <InputAdornment position="start">
                   <AccountCircle />
@@ -57,14 +83,14 @@ export default function UserInfo() {
             />
           </Grid>
           <Grid item xs={12}>
-            <InputLabel shrink id="demo-simple-select-placeholder-label-label">
+            <InputLabel id="genderLabel">
               Gender
             </InputLabel>
             <Select
-              labelId="demo-simple-select-placeholder-label-label"
-              id="demo-simple-select-placeholder-label"
-              value={gender}
-              onChange={handleGenderChange}
+              labelId="genderLabel"
+              id="genderSelect"
+              defaultValue={gender}
+              onChange={onGenderChange}
               displayEmpty
               style={{minWidth: 220}}
             >
@@ -75,21 +101,45 @@ export default function UserInfo() {
             <FormHelperText></FormHelperText>
           </Grid>
           <Grid item xs={12}>
+          <InputLabel id="weightLabel">
+              Weight
+            </InputLabel>
             <TextField
-              label="Weight"
-              id="standard-start-adornment"
+              // label="Weight"
+              labelId="weightLabel"
+              id="weightInput"
+              onChange={onWeightChange}
+              defaultValue={weight}
               className={clsx(classes.margin, classes.textField)}
               style={{minWidth: 220}}
               InputProps={{
-                startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
+                startAdornment: <InputAdornment position="start"><div style={{fontSize: 12}}>Kg</div></InputAdornment>,
               }}
             />
           </Grid>
           <Grid item xs={12}>
-            <DatePicker className={classes.formControl} />
+            <DatePicker
+              className={classes.formControl}
+              birthday={birthday}
+              setBirthday={setBirthday}
+            />
           </Grid>
         </Grid>
       </div>
+      <br /><br />
+      <p align="right">
+        <Button disabled={false} onClick={handleBack} className={classes.button}>
+          Back
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={onClick}
+          className={classes.button}
+        >
+          Next
+        </Button>
+      </p>
     </div>
   );
 }

@@ -9,7 +9,7 @@ export default function template(body, initialData, userData) {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="shortcut icon" href="/icon.png">
 
-      <title>Happy News | A Postive News Site </title>
+      <title>Gene2Risk</title>
     </head>
     <body>
       <noscript>
