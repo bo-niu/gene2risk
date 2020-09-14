@@ -6,8 +6,9 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import UserInfo from './UserInfo';
-import Dropzone from './Dropzone';
+import FileUpload from './FileUpload';
 import UserAgreement from './UserAgreement';
+import Confirmation from './Confirmation';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -111,9 +112,21 @@ export default function HorizontalLinearStepper() {
           setBirthday={setBirthday}
         />);
       case 2:
-        return <div style={{width: '60%', marginLeft: '20%', marginRight: '20%', marginTop:'5%'}}><Dropzone /><br /><br /></div>;
+        return (
+          <FileUpload
+            handleNext={handleNext}
+            handleBack={handleBack}
+            handleSkip={handleSkip}
+          />
+        );
       case 3:
-        return 'Are you sure?';
+        return (
+          <Confirmation
+            handleNext={handleNext}
+            handleBack={handleBack}
+            handleSkip={handleSkip}
+          />
+        );
       default:
         return 'Unknown step';
     }
