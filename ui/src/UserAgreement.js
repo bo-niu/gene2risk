@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { useToasts } from 'react-toast-notifications'
+import { useToasts } from 'react-toast-notifications';
 import Checkbox from '@material-ui/core/Checkbox';
 
 const useStyles = makeStyles((theme) => ({
@@ -23,7 +23,7 @@ const UserAgreement = (props) => {
   const { handleNext, handleBack, handleSkip, agreementAgreed, setAgreementAgreed } = props;
   const { addToast } = useToasts();
   // const [userAgreementChecked, setUserAgreementCheckBox] = React.useState(false);
-  const onClick = () => {
+  const onClickNext = () => {
 
     if (agreementAgreed == false) {
       addToast('Please agree our user agreement before going to the next step.', {
@@ -43,6 +43,9 @@ const UserAgreement = (props) => {
   return (
     <div style={{width: '60%', marginLeft: '20%', marginRight: '20%', marginTop:'5%'}}>
       <div>
+      <Typography variant="h4" gutterBottom>
+        User Agreement
+      </Typography>
         <Typography className={classes.instructions}>
           {'GenoCode will not collect or use any data from users.Your genetic test file will be analyzed on the website and you need to save the given risk result for your own use. Once you close the website, you need to upload the file again to see the result. If you have questions, concerns, complaints, or suggestions about our website, you can reach out to us via email.'}
         </Typography>
@@ -80,7 +83,7 @@ const UserAgreement = (props) => {
         <Button
           variant="contained"
           color="primary"
-          onClick={onClick}
+          onClick={onClickNext}
           className={classes.button}
         >
           Next

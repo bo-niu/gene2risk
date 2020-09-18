@@ -5,6 +5,7 @@ import './css/filepicker.css';
 import DropzoneComponent from 'react-dropzone-component';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+import { useToasts } from 'react-toast-notifications';
 
 export default class Dropzone extends React.Component {
 	constructor(props) {
@@ -42,55 +43,74 @@ export default class Dropzone extends React.Component {
 		this.sending = this.sending.bind(this);
 		this.addedfile = this.addedfile.bind(this);
 		this.success = this.success.bind(this);
-
+		this.removeFile = this.removeFile.bind(this);
 	}
 
-	addedfile() {
+	addedfile(file) {
 		this.uuid = uuidv4();
-		console.log(`new file added. we have generated a new uuid: ${this.uuid}`);
+		// console.log(`new file added. we have generated a new uuid: ${this.uuid}`);
+		const { setFileStat } = this.props;
+		setFileStat(null);
 	};
 
 	uploadCanceled() {
 		this.uuid = uuidv4();
-		console.log(new Date().toLocaleString());
-		console.log('uploadCanceled');
+		const { setFileStat } = this.props;
+		setFileStat(null);
 	}
 
 	sending(file, xhr, formData) {
 		formData.append("uuid", this.uuid);
 	}
 
-	async success() {
-		console.log(new Date().toLocaleString());
-		console.log('upload success');
-		try {
-			const res = await axios.post('/calculate', {
-				uuid: this.uuid,
-			});
-			const data = { uuid: this.uuid };
-			console.log(data);
-			const resObj = JSON.parse(res.data);
-			console.log('we got the resObj.');
-			console.log(resObj);
-			const { setPlot } = this.props;
-			console.log('finished const setPlot = props.setPlot;');
-			const result = {
-				x: resObj.figure[0].data[0].x,
-				y: resObj.figure[0].data[0].y,
-				array: resObj.figure[0].data[0].error_y.array,
-			};
-			console.log(result);
-			setPlot(result);
-		} catch (err) {
-      console.log(`There was a problem with the server: ${err}`);
-    }
+	async success(file) {
+		const { setFileStat } = this.props;
+		const fileStat = {
+			filename: file.name,
+			filesize: file.size,
+			uuid: this.uuid,
+		};
+		setFileStat(fileStat);
+		// try {
+		// 	const res = await axios.post('/calculate', {
+		// 		uuid: this.uuid,
+		// 	});
+		// 	const data = { uuid: this.uuid };
+		// 	console.log(data);
+		// 	const resObj = JSON.parse(res.data);
+		// 	console.log('we got the resObj.');
+		// 	console.log(resObj);
+		// 	const { setPlot } = this.props;
+		// 	console.log('finished const setPlot = props.setPlot;');
+		// 	const result = {
+		// 		x: resObj.figure[0].data[0].x,
+		// 		y: resObj.figure[0].data[0].y,
+		// 		array: resObj.figure[0].data[0].error_y.array,
+		// 	};
+		// 	console.log(result);
+		// 	setPlot(result);
+		// } catch (err) {
+    //   console.log(`There was a problem with the server: ${err}`);
+    // }
 		this.uuid = uuidv4();
 	}
 
 	error() {
-		console.log(new Date().toLocaleString());
-		console.log('upload error');
 		this.uuid = uuidv4();
+		const { setFileStat } = this.props;
+		setFileStat(null);
+		const { addToast } = useToasts();
+		addToast('Some errors occurs. Please retry.', {
+			appearance: 'error',
+			autoDismiss: true,
+			autoDismissTimeout: 5000,
+		});
+	}
+
+	removeFile(file) {
+		this.uuid = uuidv4();
+		const { setFileStat } = this.props;
+		setFileStat(null);
 	}
 
 	render() {
@@ -105,6 +125,7 @@ export default class Dropzone extends React.Component {
 			error: this.error,
 			sending: this.sending,
 			success: this.success,
+			removedfile: this.removeFile,
 		}
 
 		return (

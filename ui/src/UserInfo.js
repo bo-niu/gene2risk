@@ -13,6 +13,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import Select from '@material-ui/core/Select';
 import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,29 +32,43 @@ const useStyles = makeStyles((theme) => ({
 export default function UserInfo(props) {
   const classes = useStyles();
   const {
-    handleNext, handleBack, handleSkip, firstName, setFirstName, lastName,
-    setLastName, gender, setGender, weight, setWeight, birthday, setBirthday
+    handleNext, handleBack, handleSkip, 
+    // firstName, setFirstName, lastName,
+    // setLastName, gender, setGender, weight, setWeight, birthday, setBirthday
+    userInfo, setUserInfo,
   } = props;
+  const { firstName, lastName, gender, weight, birthday } = userInfo;
   const onClick = () => {
     handleNext();
   };
   const onLastNameChange = (e) => {
-    setLastName(e.target.value);
+    let preUserInfo = {...userInfo};
+    preUserInfo.lastName = e.target.value;
+    setUserInfo(preUserInfo);
   };
   const onFirstNameChange = (e) => {
-    setFirstName(e.target.value);
+    // setFirstName(e.target.value);
+    let preUserInfo = {...userInfo};
+    preUserInfo.firstName = e.target.value;
+    setUserInfo(preUserInfo);
   };
   const onGenderChange = (e) => {
-    setGender(e.target.value);
+    // setGender(e.target.value);
+    let preUserInfo = {...userInfo};
+    preUserInfo.gender = e.target.value;
+    setUserInfo(preUserInfo);
   };
   const onWeightChange = (e) => {
-    setWeight(e.target.value);
-  };
-  const onBirthdayChange = (e) => {
-    setBirthday(e.target.value);
+    // setWeight(e.target.value);
+    let preUserInfo = {...userInfo};
+    preUserInfo.weight = e.target.value;
+    setUserInfo(preUserInfo);
   };
   return (
     <div style={{marginLeft: '20%', marginRight: '20%', marginTop: '100px', marginBottom: '100px'}}>
+      <Typography variant="h4" gutterBottom>
+        User Information
+      </Typography>
       <div className={classes.root}>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={12} md={6} lg={5}>
@@ -89,7 +104,7 @@ export default function UserInfo(props) {
             <Select
               labelId="genderLabel"
               id="genderSelect"
-              defaultValue={gender}
+              value={gender ? gender : ''}
               onChange={onGenderChange}
               displayEmpty
               style={{minWidth: 220}}
@@ -120,8 +135,8 @@ export default function UserInfo(props) {
           <Grid item xs={12}>
             <DatePicker
               className={classes.formControl}
-              birthday={birthday}
-              setBirthday={setBirthday}
+              userInfo={userInfo}
+              setUserInfo={setUserInfo}
             />
           </Grid>
         </Grid>

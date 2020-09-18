@@ -38,6 +38,8 @@ export default function HorizontalLinearStepper() {
   const [gender, setGender] = React.useState('');
   const [weight, setWeight] = React.useState('');
   const [birthday, setBirthday] = React.useState(new Date('2000-01-01T00:00:00'));
+  const [fileStat, setFileStat] = React.useState(null);
+  const [userInfo, setUserInfo] = React.useState({});
 
   const isStepOptional = (step) => {
     // return step === 1;
@@ -100,16 +102,18 @@ export default function HorizontalLinearStepper() {
           handleNext={handleNext}
           handleBack={handleBack}
           handleSkip={handleSkip}
-          firstName={firstName}
-          setFirstName={setFirstName}
-          lastName={lastName}
-          setLastName={setLastName}
-          gender={gender}
-          setGender={setGender}
-          weight={weight}
-          setWeight={setWeight}
-          birthday={birthday}
-          setBirthday={setBirthday}
+          // firstName={firstName}
+          // setFirstName={setFirstName}
+          // lastName={lastName}
+          // setLastName={setLastName}
+          // gender={gender}
+          // setGender={setGender}
+          // weight={weight}
+          // setWeight={setWeight}
+          // birthday={birthday}
+          // setBirthday={setBirthday}
+          userInfo={userInfo}
+          setUserInfo={setUserInfo}
         />);
       case 2:
         return (
@@ -117,6 +121,8 @@ export default function HorizontalLinearStepper() {
             handleNext={handleNext}
             handleBack={handleBack}
             handleSkip={handleSkip}
+            fileStat={fileStat}
+            setFileStat={setFileStat}
           />
         );
       case 3:

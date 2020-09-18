@@ -11,9 +11,12 @@ import InputLabel from '@material-ui/core/InputLabel';
 
 export default function MaterialUIPickers(props) {
   // The first commit of Material-UI
-  const { birthday, setBirthday } = props;
+  const { userInfo, setUserInfo } = props;
   const handleDateChange = (date) => {
-    setBirthday(date);
+    let preUserInfo = {...userInfo};
+    preUserInfo.birthday = date;
+    setUserInfo(preUserInfo);
+    // setBirthday(date);
   };
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -26,7 +29,7 @@ export default function MaterialUIPickers(props) {
         labelId="birthdayLabel"
         // label="Your birthday"
         format="MM/dd/yyyy"
-        value={birthday}
+        value={userInfo.birthday}
         onChange={handleDateChange}
         KeyboardButtonProps={{
           'aria-label': 'change date',
