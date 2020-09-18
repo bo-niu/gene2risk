@@ -32,9 +32,11 @@ export default class Page extends React.Component {
     super(props);
     const user = store.userData ? store.userData.user : null;
     delete store.userData;
-    this.state = { user };
+    const geneResult = null;
+    this.state = { user, geneResult };
 
     this.onUserChange = this.onUserChange.bind(this);
+    this.setGeneResult = this.setGeneResult.bind(this);
   }
 
   async componentDidMount() {
@@ -45,6 +47,10 @@ export default class Page extends React.Component {
     }
   }
 
+  setGeneResult(res) {
+    this.setState({ geneResult: res });
+  }
+
   onUserChange(user) {
     console.log('enter onUserChange');
     console.log(user);
@@ -52,7 +58,7 @@ export default class Page extends React.Component {
   }
 
   render() {
-    const { user } = this.state;
+    const { user, geneResult } = this.state;
     if (user == null) return null;
     return (
       <div>
@@ -60,7 +66,7 @@ export default class Page extends React.Component {
           <NavbarPage user={user} onUserChange={this.onUserChange} />
           {/* <NavbarPage user={user} onUserChange={this.onUserChange} /> */}
           <UserContext.Provider value={user}>
-            <Contents onUserChange={this.onUserChange} />
+            <Contents onUserChange={this.onUserChange} setGeneResult={this.setGeneResult} geneResult={geneResult} />
           </UserContext.Provider>
           <Footer />
         </ToastProvider>

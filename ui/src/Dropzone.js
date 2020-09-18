@@ -3,7 +3,6 @@ import './css/dropzone.css';
 import './css/dropzone.min.css';
 import './css/filepicker.css';
 import DropzoneComponent from 'react-dropzone-component';
-import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { useToasts } from 'react-toast-notifications';
 

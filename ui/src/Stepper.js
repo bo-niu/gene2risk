@@ -27,19 +27,21 @@ function getSteps() {
   return ['User Agreement', 'Basic Information', 'Gene File', 'Confirmation'];
 }
 
-export default function HorizontalLinearStepper() {
+export default function HorizontalLinearStepper(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
   const steps = getSteps();
   const [agreementAgreed, setAgreementAgreed] = React.useState(false);
-  const [firstName, setFirstName] = React.useState('');
-  const [lastName, setLastName] = React.useState('');
-  const [gender, setGender] = React.useState('');
-  const [weight, setWeight] = React.useState('');
-  const [birthday, setBirthday] = React.useState(new Date('2000-01-01T00:00:00'));
+  // const [firstName, setFirstName] = React.useState('');
+  // const [lastName, setLastName] = React.useState('');
+  // const [gender, setGender] = React.useState('');
+  // const [weight, setWeight] = React.useState('');
+  // const [birthday, setBirthday] = React.useState(new Date('2000-01-01T00:00:00'));
   const [fileStat, setFileStat] = React.useState(null);
-  const [userInfo, setUserInfo] = React.useState({});
+  const [userInfo, setUserInfo] = React.useState({
+    birthday: new Date('2000-01-01T00:00:00'),
+  });
 
   const isStepOptional = (step) => {
     // return step === 1;
@@ -131,6 +133,9 @@ export default function HorizontalLinearStepper() {
             handleNext={handleNext}
             handleBack={handleBack}
             handleSkip={handleSkip}
+            userInfo={userInfo}
+            fileStat={fileStat}
+            {...props}
           />
         );
       default:

@@ -9,7 +9,7 @@ import routes from './routes.js';
 // import NotFound from './pages/NotFound';
 
 export default function Contents(props) {
-  const { onUserChange } = props;
+  const { onUserChange, setGeneResult, geneResult } = props;
   return (
     <Switch>
       {/* <Redirect exact from="/" to="/issues" /> */}
@@ -19,7 +19,7 @@ export default function Contents(props) {
           key={path}
           path={path}
           render={(props1) => (
-            <Comp {...props1} onUserChange={onUserChange} />
+            <Comp {...props1} onUserChange={onUserChange} setGeneResult={setGeneResult} geneResult={geneResult} />
           )}
         />
       ))}

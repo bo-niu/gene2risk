@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/Col';
 import dna from '../img/dna.png';
 import Stepper from '../Stepper';
 
-function GetStarted() {
+function GetStarted(props) {
 
   const [started, setStarted] = useState(false);
 
@@ -44,7 +44,7 @@ function GetStarted() {
     </div>
   );
 
-  const content = started ? <Stepper /> : notStarted;
+  const content = started ? <Stepper {...props} /> : notStarted;
 
   return (
     <>

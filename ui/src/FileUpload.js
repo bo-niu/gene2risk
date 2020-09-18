@@ -75,7 +75,7 @@ export default function FileUpload(props) {
             <strong>You have successfully upload your gene file.</strong>
           </div>
           <div>File name: {fileStat.filename}</div>
-          <div>Size: {(fileStat.filesize / 1024 / 1024).toFixed(2)}MB</div>
+          <div>Size: {(fileStat.filesize / 1000 / 1000).toFixed(1)}MB</div>
       </Typography>
       </div>
     );
