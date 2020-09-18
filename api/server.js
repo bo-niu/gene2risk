@@ -37,6 +37,13 @@ app.post('/calculate', (req, res) => {
     if (error) console.log(error);
     // console.log('results:\n', results);
     res.send(results);
+    // const url = require('url');
+    // res.redirect(url.format({
+    //   pathname:"/result",
+    //   query: {
+    //      'res': results,
+    //    }
+    // }));
   });
   return null;
 });

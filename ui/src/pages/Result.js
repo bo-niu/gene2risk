@@ -1,5 +1,6 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
+import useWindowDimensions from '../components/useWindowDimensions';
 // import { useParams } from 'react-router';
 
 let Plotly = null;
@@ -14,6 +15,7 @@ loadPlotly();
 
 function Result(props) {
   const { geneResult: res } = props;
+  const { height: windowHeight, width: windowWidth } = useWindowDimensions();
   // let useParam = useParams();
   console.log('geneResult: ', res);
   let geneResult = null;
@@ -44,6 +46,7 @@ function Result(props) {
           },
         }]}
         layout={{
+          width: windowWidth,
           title: 'Contributions of different SNPs to BMI Polygenic risk scores',
           yaxis: {
             title: 'Contributions',
@@ -55,6 +58,8 @@ function Result(props) {
       />
     );
   }
+
+  console.log(windowWidth, windowHeight);
   return (
     <div>
       <Typography variant="h4" gutterBottom>

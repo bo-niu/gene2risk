@@ -2,7 +2,8 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const webpack = require('webpack');
 const CompressionPlugin = require('compression-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const browserConfig = {
   mode: 'development',
@@ -69,7 +70,9 @@ const browserConfig = {
       name: 'vendor',
       chunks: 'all',
     },
-    minimizer: [new UglifyJsPlugin()],
+    // minimizer: [new UglifyJsPlugin()],
+    minimize: true,
+    minimizer: [new TerserPlugin()],
   },
   plugins: [
     new webpack.DefinePlugin({
